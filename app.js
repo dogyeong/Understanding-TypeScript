@@ -1,33 +1,37 @@
-/* 12
-런타임이 아니라 개발할 때 타입스크립트가 타입 체킹을 해준다
-이 말은, 타입스크립트를 자바스크립트로 컴파일 할 때 타입을 검사해서 에러를 발생시킨다는 것이다
+/* 22
+타입을 하나만 지정하는 것이 아니라 여러 개 묶은 것을 유니온 타입이라고 한다
+(|) 로 구분해서 지정하고, 유니온 타입을 쓰면 타입체킹이 불확실해지기 때문에 런타임에서 타입 체크를 해야 하는 경우도 있다.
+아래와 같이 인자로 여러 가지 타입의 값을 받고 싶을 때 사용할 수 있다.
 */
-function add(n1, n2) {
-    return n1 + n2;
-}
-var number1 = 5;
-var number2 = 2.8;
-var result = add(number1, number2);
-console.log(result);
-/* 13
-Type casting
-타입스크립트의 모든 타입은 소문자로 적는다 : number, string ...
-*/
-/* 14
-타입스크립트의 코어 타입은 string, number, boolean 이다.
-변수를 선언할 때 변수명 옆에 콜론(:)과 함께 타입을 정의한다.
-타입을 따로 정의하지 않으면 any 타입으로 정의된다.
-하지만 변수를 선언하면서 값을 초기화하면, 그 값의 타입으로 정의된다.
-*/
-function add2(n1, n2, showResult, phrase) {
-    var result = n1 + n2;
-    if (showResult) {
-        console.log(phrase + result);
+function combine(input1, input2) {
+    var result;
+    if (typeof input1 === 'number' && typeof input2 === 'number') {
+        result = input1 + input2;
     }
     else {
-        return n1 + n2;
+        result = input1.toString() + input2.toString();
     }
+    return result;
 }
-var number3; // number
-var number4; // any
-var number5 = 120; //number
+/* 23
+리터럴 타입 이라는 것도 존재하는데, 리터럴 타입은 타입에 특정한 값(상수)가 정의되는 것이다.
+예를 들어 const로 선언한 변수는 선언하면서 초기화한 값이 그 변수의 타입이 된다.
+이런 경우를 리터럴 타입이라고 한다.
+*/
+var n = 2.4; // n은 타입으로 2.4를 가지는 리터럴 타입이다.
+function log(message) {
+    console.log(message);
+}
+log('Hi'); // 'Hi' 또는 'Hello'만 인자로 넘겨줄 수 있다.
+var Msg;
+(function (Msg) {
+    Msg["hi"] = "HI~";
+    Msg["hello"] = "HELLO~";
+    Msg["wow"] = "WOW~";
+})(Msg || (Msg = {}));
+function log2(message) {
+    // enum을 활용해보자
+    console.log(message);
+}
+log2(Msg.hi);
+log2(Msg.wow);
