@@ -78,9 +78,41 @@ for (const i of arr2) {
 */
 const nameAndHeight: [string, number] = ['james', 180];
 
-/*
+/* 19
 다만 튜플 타입의 값을 Array 프로토타입의 메소드를 통해 조작하는 것은 금지되지 않는다는 점에 유의해야 한다. 
 예를 들어 아래와 같은 코드는 에러를 내지 않는다.
 */
 const validNameAndHeight: [string, number] = ['안희종', 176];
 validNameAndHeight.push(42); // no error
+
+/* 20
+enum 타입이 있다.
+enum 타입으로 number에 사람이 읽기 쉬운 라벨을 붙일 수 있다.
+아래와 같이 특정 값을 상수로 지정해서 사용하는 경우에 활용할 수 있다. 
+*/
+const ADMIN = 0;
+const AUTHOR = 1;
+const READ_ONLY = 2;
+
+const role = ADMIN;
+
+/* 20
+위의 경우를 enum을 적용하면 아래와 같이 쓸 수 있다
+*/
+enum Role {
+  ADMIN,
+  AUTHOR,
+  READ_ONLY,
+}
+
+const role2 = Role.AUTHOR;
+
+/* 20
+enum에 값을 지정하지 않으면 0,1,2.. 로 증가하는 숫자로 초기화된다.
+숫자 또는 문자열의 값으로 지정할 수 있다.
+*/
+enum Count {
+  MIN = 10,
+  MAX = 200,
+  MESSAGE = 'Count',
+}
