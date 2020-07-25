@@ -40,3 +40,18 @@ function log2(message: Msg) {
 
 log2(Msg.hi);
 log2(Msg.wow);
+
+/* 24
+타입에 별칭(Aliases)을 붙일 수 있다.
+type name = Type; 의 형태로 선언하며 타입의 자리에는 기본 타입을 포함한 모든 타입이 올 수 있다.
+복잡한 타입을 간단하게 쓸 수 있는 장점이 있다.
+*/
+type UUID = string;
+type Height = number;
+type AnotherUUID = UUID;
+type Animal = 'dog' | 'cat';
+type Animals = Animal[];
+type User = {
+  name: string;
+  height: number;
+};
