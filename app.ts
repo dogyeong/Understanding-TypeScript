@@ -116,3 +116,11 @@ enum Count {
   MAX = 200,
   MESSAGE = 'Count',
 }
+
+/* 21
+타입스크립트의 코어 타입 중 마지막 타입은 any 타입이다.
+any 타입에는 모든 타입의 값이 저장될 수 있으며, 타입스크립트는 에러를 발생시키지 않는다.
+any를 쓰면 타입스크립트의 타입 체크가 되지 않고, 자바스크립트와 다를게 없게 된다.
+*/
+let anyValue: any = 10;
+let anyArray: any[] = [10, 'asd', false];
