@@ -15,14 +15,11 @@ console.log(result);
 
 /* 13
 Type casting
-타입스크립트의 모든 타입은 소문자로 적는다 : number, string ...
+타입스크립트의 모든 타입은 소문자로 적는다 : number, string 등등..
 */
 
 /* 14
-타입스크립트의 코어 타입은 string, number, boolean 이다.
-변수를 선언할 때 변수명 옆에 콜론(:)과 함께 타입을 정의한다. 
-타입을 따로 정의하지 않으면 any 타입으로 정의된다.
-하지만 변수를 선언하면서 값을 초기화하면, 그 값의 타입으로 정의된다.
+타입스크립트의 코어 타입 중 기본 타입은 string, number, boolean 이다.
 */
 function add2(n1: number, n2: number, showResult: boolean, phrase: string) {
   const result = n1 + n2;
@@ -33,6 +30,16 @@ function add2(n1: number, n2: number, showResult: boolean, phrase: string) {
   }
 }
 
+/* 14
+변수를 선언할 때 변수명 옆에 콜론(:)과 함께 타입을 정의한다. 
+타입을 따로 정의하지 않으면 any 타입으로 정의된다.
+하지만 변수를 선언하면서 값을 초기화하면, 그 값의 타입으로 정의된다.
+*/
 let number3: number; // number
 let number4; // any
 let number5 = 120; //number
+
+/* 14
+정의된 타입과 다른 타입으로 값을 할당하면 에러가 발생한다
+*/
+// number5 = '12' // Error
