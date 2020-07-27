@@ -1,27 +1,17 @@
-/* 26
-함수의 리턴 타입을 지정할 수 있다. 만약 지정하지 않으면 타입은 자동으로 추론된다.
-함수에 리턴문이 없으면 void 타입을 리턴하는 것으로 한다.
-void는 undefined와 다르다. 리턴문이 없다는 뜻이다.
+/* 29
+타입스크립트에는 unknown 타입도 있다.
+unknown 타입은 아직 정해지지 않았다는 의미로, any 타입과 비슷하게 어떤 타입이든 할당할 수 있지만,
+다른 타입의 변수에 할당할 때 에러를 발생시킨다는 점이 다르다.
+any를 쓰는 것보다 unknown을 쓰는게 조금 더 타입을 확실하게 결정하는 방법이고
+나중에 타입체크를 하면서 사용하면 된다.
 */
-function add(n1: number, n2: number): number {
-  return n1 + n2;
-}
+let unknownVar: unknown;
+let anyVar: any;
+let stringVar: string;
 
-function print(n: number): void {
-  console.log(n);
-}
+stringVar = anyVar; // no error
+// stringVar = unknown; // error
 
-/* 27
-함수 타입을 지정할 수 있다. Function이라고 하면 모든 함수를 할당할 수 있으며,
-화살표 함수 형식으로 파라미터와 리턴값의 타입을 따로 지정할 수도 있다.
-*/
-let anyFunction: Function;
-let addFunction: (a: number, b: number) => number;
-
-/* 28
-콜백함수를 쓸 때는 함수 타입을 화살표 함수 형식으로 지정해 주면 된다.
-*/
-function addAndHandle(n1: number, n2: number, callback: (n: number) => void) {
-  const result = n1 + n2;
-  callback(result);
+if (typeof unknownVar === 'string') {
+  stringVar = unknownVar; // 타입체크 후에는 가능
 }
