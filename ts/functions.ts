@@ -3,11 +3,11 @@
 함수에 리턴문이 없으면 void 타입을 리턴하는 것으로 한다.
 void는 undefined와 다르다. 리턴문이 없다는 뜻이다.
 */
-function add(n1: number, n2: number): number {
+function add3(n1: number, n2: number): number {
   return n1 + n2;
 }
 
-function print(n: number): void {
+function printNumber(n: number): void {
   console.log(n);
 }
 

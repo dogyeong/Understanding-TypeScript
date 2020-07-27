@@ -18,7 +18,7 @@ const person: object = {
   age: 30,
 };
 
-person.name; // Error
+// person.name; // Error
 
 const person2: {
   name: string;

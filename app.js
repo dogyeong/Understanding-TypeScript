@@ -1,37 +1,11 @@
-/* 22
-타입을 하나만 지정하는 것이 아니라 여러 개 묶은 것을 유니온 타입이라고 한다
-(|) 로 구분해서 지정하고, 유니온 타입을 쓰면 타입체킹이 불확실해지기 때문에 런타임에서 타입 체크를 해야 하는 경우도 있다.
-아래와 같이 인자로 여러 가지 타입의 값을 받고 싶을 때 사용할 수 있다.
+"use strict";
+/* 33
+타입스크립트 컴파일 옵션
+tsc {filename} --watch (-w) : 파일이 수정될 때마다 자동으로 컴파일한다
 */
-function combine(input1, input2) {
-    var result;
-    if (typeof input1 === 'number' && typeof input2 === 'number') {
-        result = input1 + input2;
-    }
-    else {
-        result = input1.toString() + input2.toString();
-    }
-    return result;
-}
-/* 23
-리터럴 타입 이라는 것도 존재하는데, 리터럴 타입은 타입에 특정한 값(상수)가 정의되는 것이다.
-예를 들어 const로 선언한 변수는 선언하면서 초기화한 값이 그 변수의 타입이 된다.
-이런 경우를 리터럴 타입이라고 한다.
+console.log('aaaaa');
+/* 34
+tsc init : 현재 폴더를 타입스크립트 폴더로 초기화한다.
+.tsconfig 파일이 생성되고, tsc 커맨드를 입력하면 폴더 내의 모든 타입스크립트 파일이 컴파일된다.
+tsc -w
 */
-var n = 2.4; // n은 타입으로 2.4를 가지는 리터럴 타입이다.
-function log(message) {
-    console.log(message);
-}
-log('Hi'); // 'Hi' 또는 'Hello'만 인자로 넘겨줄 수 있다.
-var Msg;
-(function (Msg) {
-    Msg["hi"] = "HI~";
-    Msg["hello"] = "HELLO~";
-    Msg["wow"] = "WOW~";
-})(Msg || (Msg = {}));
-function log2(message) {
-    // enum을 활용해보자
-    console.log(message);
-}
-log2(Msg.hi);
-log2(Msg.wow);
