@@ -15,3 +15,12 @@ stringVar = anyVar; // no error
 if (typeof unknownVar === 'string') {
   stringVar = unknownVar; // 타입체크 후에는 가능
 }
+
+/* 30
+함수가 리턴할 수 있는 타입에는 never 타입도 있다.
+void와 다르게, never 타입은 함수가 리턴하지 않는 경우에 리턴 타입으로 사용되며
+대표적인 예로 에러를 발생시키는 함수의 경우 never타입을 리턴한다
+*/
+function createError(message: string): never {
+  throw new Error(message);
+}
