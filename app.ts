@@ -10,3 +10,18 @@ function add(n1: number, n2: number): number {
 function print(n: number): void {
   console.log(n);
 }
+
+/* 27
+함수 타입을 지정할 수 있다. Function이라고 하면 모든 함수를 할당할 수 있으며,
+화살표 함수 형식으로 파라미터와 리턴값의 타입을 따로 지정할 수도 있다.
+*/
+let anyFunction: Function;
+let addFunction: (a: number, b: number) => number;
+
+/* 28
+콜백함수를 쓸 때는 함수 타입을 화살표 함수 형식으로 지정해 주면 된다.
+*/
+function addAndHandle(n1: number, n2: number, callback: (n: number) => void) {
+  const result = n1 + n2;
+  callback(result);
+}
