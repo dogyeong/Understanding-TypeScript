@@ -50,3 +50,7 @@ true로 설정하고 컴파일하면 .js.map이 추가로 생성되는데, 이 �
 /* 41
 outDir : 타입스크립트를 컴파일한 파일들이 저장될 위치를 지정. 예를 들면 "outDir": "./dist"
 */
+
+/* 45
+디버깅할 때 sourceMap 옵션을 켜고, Debugger for Chrome 익스텐션을 쓰면 좋다?
+*/
