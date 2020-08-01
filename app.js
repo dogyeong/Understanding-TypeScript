@@ -30,3 +30,13 @@ var Department2 = /** @class */ (function () {
 }());
 var d = new Department2(['test'], 1234);
 console.log(d.phone);
+/* 64
+readonly 키워드를 사용하면 한번 초기화한 후, 값을 변경할 수 없게 된다.
+private 필드에는 해봤자 소용없다(접근이 안되니)
+ */
+var Department3 = /** @class */ (function () {
+    function Department3(name) {
+        this.name = name;
+    }
+    return Department3;
+}());
