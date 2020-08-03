@@ -1,6 +1,6 @@
 /* 59
 타입스크립트에서 클래스 사용하기
-public, private 키워드를 필드에 사용할 수 있다.
+public, private 키워드를 필드, 메소드에 사용할 수 있다.
 하지만 컴파일하고나서, 런타임 때는 적용되지 않는다. 
 */
 class Department {
@@ -69,3 +69,40 @@ class Marketing extends Department {
 }
 const m = new Marketing('mkt');
 m.describe(); // marketing: mkt
+
+/* 67
+getter, setter를 사용할 수 있다
+둘 다 get, set 키워드를 앞에 붙이고 메소드처럼 정의하면 되고,
+getter는 어떤 로직을 수행한 후에 값을 리턴하는식으로 선언하고, 사용할 때는 메소드처럼 사용한다
+setter는 어떤 값을 파라미터로 받아서 필드의 값을 바꾸는 로직을 수행하는 메소드고, 
+사용할 때는 메소드 호출이 아니라 파라미터에 값을 대입하는 것처럼 사용하면 된다.
+*/
+class ExampleClass {
+  constructor(private name: string = 'john') {}
+
+  get lastName() {
+    return this.name;
+  }
+
+  set lastName(s: string) {
+    this.name = s;
+  }
+}
+const example = new ExampleClass();
+example.lastName; // john
+example.lastName = 'james';
+
+/* 68
+static 키워드로 static 프로퍼티나 메소드를 만들 수 있다.
+보통 유틸리티 함수를 만들거나, 글로벌 변수를 저장할 때 사용한다.
+클래스 내에서 접근할 떄는 this.프로퍼티가 아니라 클래스명.프로퍼티 로 접근해야 한다
+*/
+class Utils {
+  static greeting = 'hi';
+
+  static add(n1: number, n2: number) {
+    return n1 + n2;
+  }
+}
+console.log(Utils.greeting); // hi
+console.log(Utils.add(2, 3)); // 5
