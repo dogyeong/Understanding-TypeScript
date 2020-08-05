@@ -106,3 +106,28 @@ class Utils {
 }
 console.log(Utils.greeting); // hi
 console.log(Utils.add(2, 3)); // 5
+
+/* 69
+abstract 키워드로 추상 클래스를 만들 수 있다.
+추상 클래스는 직접 인스턴스를 만들 수 없고, 상속받을 클래스를 위해 메소드, 멤버변수를 정의할 수 있다.
+상속받은 클래스는 추상 메소드를 구현해야 한다
+*/
+
+abstract class Animal {
+  constructor(public name: string) {}
+
+  getName() {
+    return name;
+  }
+  abstract speak(): void; // 상속받는 클래스에서 구현해야 한다
+}
+
+class Dog extends Animal {
+  constructor(name: string) {
+    super(name);
+  }
+
+  speak() {
+    console.log('bow');
+  }
+}
