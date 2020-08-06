@@ -116,6 +116,7 @@ example.lastName = 'james';
 /* 68
 static 키워드로 static 프로퍼티나 메소드를 만들 수 있다.
 보통 유틸리티 함수를 만들거나, 글로벌 변수를 저장할 때 사용한다.
+클래스 내에서 접근할 떄는 this.프로퍼티가 아니라 클래스명.프로퍼티 로 접근해야 한다
 */
 var Utils = /** @class */ (function () {
     function Utils() {
@@ -126,5 +127,48 @@ var Utils = /** @class */ (function () {
     Utils.greeting = 'hi';
     return Utils;
 }());
-console.log(Utils.greeting);
-console.log(Utils.add(2, 3));
+console.log(Utils.greeting); // hi
+console.log(Utils.add(2, 3)); // 5
+/* 69
+abstract 키워드로 추상 클래스를 만들 수 있다.
+추상 클래스는 직접 인스턴스를 만들 수 없고, 상속받을 클래스를 위해 메소드, 멤버변수를 정의할 수 있다.
+상속받은 클래스는 추상 메소드를 구현해야 한다
+*/
+var Animal = /** @class */ (function () {
+    function Animal(name) {
+        this.name = name;
+    }
+    Animal.prototype.getName = function () {
+        return name;
+    };
+    return Animal;
+}());
+var Dog = /** @class */ (function (_super) {
+    __extends(Dog, _super);
+    function Dog(name) {
+        return _super.call(this, name) || this;
+    }
+    Dog.prototype.speak = function () {
+        console.log('bow');
+    };
+    return Dog;
+}(Animal));
+/* 70
+
+*/
+var Manager = /** @class */ (function () {
+    function Manager(name) {
+        this.name = name;
+    }
+    Manager.getInstance = function () {
+        if (!Manager.instance) {
+            this.instance = new Manager('john');
+        }
+        return this.instance;
+    };
+    return Manager;
+}());
+// const manager = new Manager('john'); // Error
+var manager = Manager.getInstance();
+console.log(manager);
+console.log(Manager.getInstance() === Manager.getInstance());

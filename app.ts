@@ -131,3 +131,28 @@ class Dog extends Animal {
     console.log('bow');
   }
 }
+
+/* 70
+클래스의 인스턴스를 하나만 생성할 수 있는 패턴을 싱글톤 패턴이라고 한다.
+싱글톤 패턴을 private constructor를 사용하여 구현할 수 있다.
+생성자를 private으로 설정하여 new 키워드로 인스턴스를 생성하지 못하게 하고,
+static 메소드와 필드를 만들어서 처음 호출할 때만 인스턴스를 만들어서 저장해두고,
+그 다음 호출부터는 private 필드에 저장돼있는 객체를 리턴한다.
+*/
+class Manager {
+  private static instance: Manager;
+
+  private constructor(public name: string) {}
+
+  static getInstance() {
+    if (!Manager.instance) {
+      this.instance = new Manager('john');
+    }
+    return this.instance;
+  }
+}
+
+// const manager = new Manager('john'); // Error
+const manager = Manager.getInstance();
+console.log(manager);
+console.log(Manager.getInstance() === Manager.getInstance()); // true
