@@ -21,3 +21,17 @@ let user: Person = {
     console.log(phrase);
   },
 };
+
+/* 73
+클래스에서 인터페이스를 implements 하여 구현하면
+해당 인터페이스에서 선언된 필드와 메소드를 가져야 한다.
+*/
+interface Greetable {
+  greet(): void;
+}
+
+class Cat implements Greetable {
+  greet() {
+    console.log('hi');
+  }
+}

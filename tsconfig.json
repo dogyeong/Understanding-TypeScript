@@ -64,5 +64,5 @@
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
   "exclude": ["ts", "node_modules"],
-  "include": ["./*.ts", "ts/configuration.ts"]
+  "include": ["./*.ts", "ts/configuration.ts", "ts/classes.ts"]
 }
