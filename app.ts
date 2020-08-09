@@ -51,3 +51,29 @@ let p: runnable = {
 };
 
 // p.speed = 10; // Error
+
+/* 76
+인터페이스끼리 상속할 수 있다.
+*/
+interface A {
+  name: string;
+}
+
+interface B extends A {
+  age: number;
+}
+
+const b: B = {
+  name: 'b name',
+  age: 12,
+};
+
+/* 77
+인터페이스로 객체가 아니라 함수의 타입을 지정할 수도 있다.
+객체 안에 익명함수 형식으로 작성하면 된다.
+*/
+interface Fn {
+  (a: string): number;
+}
+
+let fn: Fn = (s: string) => Number(s);
