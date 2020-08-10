@@ -77,3 +77,20 @@ interface Fn {
 }
 
 let fn: Fn = (s: string) => Number(s);
+
+/* 78
+물음표(?)를 프로퍼티 이름 뒤에 붙이면 해당 프로퍼티는 옵션이 된다.
+있어도 되고, 없어도 된다. undefined랑 합쳐진 유니온 타입이 되는듯.
+옵션 프로퍼티는 인터페이스뿐만 아니라 클래스 내의 프로퍼티나 함수의 파라미터에서도 쓸 수 있다.
+*/
+function example(option?: object): void {}
+
+interface C {
+  name: string;
+  age?: number;
+}
+
+// No Error
+const c: C = {
+  name: 'C name',
+};
