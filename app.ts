@@ -22,3 +22,23 @@ type Infeasible = string & number;
 
 // 인터섹션 타입 역시 몇 개든 이어가며 정의할 수 있다.
 type Awesome = Programmer & BeerLover & CatLover;
+
+/* 84
+타입을 동적으로 체크할 때 typeof를 쓸 수 있지만
+객체의 타입을 체크하기 위해서는
+in 이나 instanceof 를 사용할 수 있다.
+*/
+
+class ExampleClass {
+  go() {}
+}
+
+const v1 = new ExampleClass();
+
+if (v1 instanceof ExampleClass) {
+  v1.go();
+}
+
+if ('go' in v1) {
+  v1.go();
+}
