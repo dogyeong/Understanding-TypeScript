@@ -67,3 +67,30 @@ input2.value = input3.value = 'some text';
 
 // 이렇게도 된다
 (input as HTMLInputElement).value = 'some text';
+
+/* 87
+객체의 값이 동적으로 정해지는 경우에는 인덱스 프로퍼티(시그니처)를 활용할 수 있다.
+인터페이스를 정의할 때, 키 값에 대괄호로 싸고 타입을 지정하면 키의 타입을 지정할 수 있다.
+*/
+interface ErrorContainer {
+  [name: string]: string;
+}
+
+const emailError: ErrorContainer = {
+  email: 'invalid Email!',
+};
+
+const nameError: ErrorContainer = {
+  name: 'invalid Name!',
+};
+
+// 다른 예시
+interface nameAndHeight {
+  [name: string]: number;
+}
+
+const info: nameAndHeight = {
+  홍길동: 180,
+  김철수: 172,
+  안철수: 170,
+};
