@@ -138,3 +138,17 @@ const s = double('hi'); // string
 외부에서 받아온 객체에 어떤 프로퍼티가 있는지 없는지 확실하지 않을 때에는 옵셔널 체이닝을 사용하면 된다.
 앞의 부분이 undefined나 null이면 undefined를 반환하고 아니면 뒷부분을 반환한다.
 */
+
+// 만약 이런 식의 데이터를 서버에서 받아온다고 했을 때,
+// job의 데이터가 바뀔수도 있다고 가정하면
+const userData = {
+  id: 'uid1',
+  name: 'Max',
+  job: {
+    title: 'CEO',
+    description: 'my own company',
+  },
+};
+
+// const title = userData && userData.job && userData.job.title // 원래는 이렇게 체크를 하지만
+const title = userData?.job?.title; // optional chaining 을 사용하면 이렇게 하면 된다!
