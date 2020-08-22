@@ -1,5 +1,6 @@
 /* 94
 제네릭은 어떤 함수, 클래스, 자료구조 등에서 사용할 타입을 사용할 때(선언할 때?) 결정하는 기법이다.
+제네릭은 타입의 유연성과 안전성을 동시에 확보할 수 있는 좋은 개념이다.
 타입을 선언할 때 뒤에 <사용할 타입>을 명시하면 된다.
 */
 
@@ -92,3 +93,29 @@ let personProps: keyof Person; // 'name' | 'age'
 function printProp<T extends object, U extends keyof T>(obj: T, key: U) {
   console.log(obj[key]);
 }
+
+/* 101
+제네릭 타입이 제공하는 유틸리티 타입이 있다.
+Partial 타입과 Readonly 타입에 대해 알아보자
+*/
+// Partial 타입은 전달받은 객체의 프로퍼티들을 전부 optional로 바꿔준다.
+type Book = {
+  title: string;
+  price: number;
+  author: string;
+};
+
+// 아래와 같이 특정 타입의 빈 객체를 생성하고 값을 추가하려고 할 때
+// const myBook: Book = {}; // Book 타입은 필수적인 프로퍼티가 있기 때문에 빈 객체를 할당할 수 없다.
+const myBook: Partial<Book> = {}; // Partial 제네릭을 사용하면 프로퍼티들이 옵셔널로 변경된다.
+
+myBook.title = 'harryPoter';
+myBook.price = 3000;
+myBook.author = 'rolling';
+
+myBook as Book; // 마지막에 다시 Book 타입으로 캐스팅하면 된다
+
+// Readonly 타입은 객체,배열의 값을 바꿀 수 없게 해준다
+const users: Readonly<string[]> = ['Max', 'Anna'];
+
+// users.push('Joe'); // 에러
