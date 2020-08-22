@@ -24,7 +24,8 @@ class Stack {
     }
 }
 /* 95
- */
+제네릭 함수
+*/
 // 만약 두 객체를 받아서 합친 객체를 반환하는 함수를 정의한 경우,
 // 아래와 같이 타입을 object로 정의하면 리턴 타입도 object 타입이 되고,
 // 반환한 객체가 어떤 프로퍼티를 가지는지 타입스크립트는 알 수 없게 된다.
@@ -40,3 +41,16 @@ function mergeWithGeneric(obj1, obj2) {
 }
 const merged2 = mergeWithGeneric({ name: 'Max' }, { age: 30 });
 merged2.age; // 30
+/* 96
+타입 제한
+*/
+// 위에서 만든 함수의 경우, 두 번째 인자로 숫자를 넣어도 에러가 발생하지 않는다.
+// 제네릭은 타입을 유연하게 만들지만, 이렇게 원하지 않는 타입이 들어갈 수도 있는 부작용이 생길 수 있다.
+// 이럴 때 타입을 제한할 수 있는 방법이 있다.
+// 제네릭 타입을 적을 때 extends로 특정 타입을 상속하게 하면 된다.
+function mergeWithConstraints(obj1, obj2) {
+    return Object.assign(obj1, obj2);
+}
+mergeWithGeneric({ name: 'Max' }, 30); // 에러아님
+// mergeWithConstraints({ name: 'Max' }, 30) // 에러
+mergeWithConstraints({ name: 'Max' }, { age: 30 }); // 객체만 받을 수 있게 되었다
