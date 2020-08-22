@@ -77,3 +77,18 @@ interface Lengthy {
 function countLength<T extends Lengthy>(item: T): string {
   return `got ${item.length}.`;
 }
+
+/* 98
+keyof 를 이용하면 인터페이스를 사용하지 않고도 받은 객체의 프로퍼티인지 체크할 수 있다.
+*/
+type Person = {
+  name: string;
+  age: number;
+};
+
+let personProps: keyof Person; // 'name' | 'age'
+
+// keyof와 제네릭을 이용해서 객체와 그 객체의 키값만 입력받을 수 있다
+function printProp<T extends object, U extends keyof T>(obj: T, key: U) {
+  console.log(obj[key]);
+}
