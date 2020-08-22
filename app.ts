@@ -63,3 +63,17 @@ function mergeWithConstraints<T extends object, U extends object>(obj1: T, obj2:
 mergeWithGeneric({ name: 'Max' }, 30); // 에러아님
 // mergeWithConstraints({ name: 'Max' }, 30) // 에러
 mergeWithConstraints({ name: 'Max' }, { age: 30 }); // 객체만 받을 수 있게 되었다
+
+/* 97
+제네릭과 인터페이스를 결합하면 특정 프로퍼티를 가지는 값만 받을 수 있다.
+*/
+
+// Lengthy라는 인터페이스를 만든다
+interface Lengthy {
+  length: number;
+}
+
+// 제네릭에서 Lengthy를 상속해서 length 프로퍼티가 있는 것만 받을 수 있다
+function countLength<T extends Lengthy>(item: T): string {
+  return `got ${item.length}.`;
+}
