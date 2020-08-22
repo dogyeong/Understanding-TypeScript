@@ -150,5 +150,18 @@ const userData = {
   },
 };
 
-// const title = userData && userData.job && userData.job.title // 원래는 이렇게 체크를 하지만
-const title = userData?.job?.title; // optional chaining 을 사용하면 이렇게 하면 된다!
+const title1 = userData && userData.job && userData.job.title; // 원래는 이렇게 체크를 하지만
+const title2 = userData?.job?.title; // optional chaining 을 사용하면 이렇게 하면 된다!
+
+/* 90
+Nullish Coalescing Operator
+?? 라는 연산자를 통해 앞의 피연산자가 null 혹은 undefined인지 확인하며, 그 쓰임은 ||와 같다.
+|| 와의 차이점은 || 연산자는 falsy value를 확인하기 때문에 '', 0, 등등 false가 되는 값들이 다 체크가 되지만
+?? 는 null과 undefined 만 체크한다.
+*/
+
+const zero = 0;
+const one = 1;
+
+const number = zero || one; // 1
+const numberWithNCO = zero ?? one; // 0
