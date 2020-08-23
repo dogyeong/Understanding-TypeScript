@@ -1,4 +1,4 @@
-## 83 intersection type
+## 83. intersection type
 
 인터섹션 타입을 이용해 “여러 경우에 모두 해당”하는 타입을 표현할 수 있다.
 
@@ -29,7 +29,7 @@ type Awesome = Programmer & BeerLover & CatLover;
 
 <br>
 
-## 84 More on Type Guards
+## 84. More on Type Guards
 
 타입을 동적으로 체크할 때 typeof를 쓸 수 있지만
 
@@ -53,7 +53,7 @@ if ('go' in v1) {
 
 <br>
 
-## 86 Type Casting
+## 86. Type Casting
 
 타입을 임의로 바꿀 수 있다.
 
@@ -83,7 +83,7 @@ input2.value = input3.value = 'some text';
 
 <br>
 
-## 87 Index Properties
+## 87. Index Properties
 
 객체의 값이 동적으로 정해지는 경우에는 인덱스 프로퍼티(시그니처)를 활용할 수 있다.
 
@@ -116,7 +116,7 @@ const info: nameAndHeight = {
 
 <br>
 
-## 88 Function Overloads
+## 88. Function Overloads
 
 타입스크립트에서는 기본적으로 딱 함수를 선언할 때 명시한 만큼의 인자를 받아야만 타입 에러를 피할 수 있다.
 
@@ -134,13 +134,13 @@ const info: nameAndHeight = {
 // 이 함수들은 각각 문자열, 숫자, 그리고 불리언의 배열을 받아 두 배로 만드는 함수다.
 // 이 때, ‘두 배’가 의미하는 건 타입에 따라 다르다.
 function doubleString(str: string): string {
-return `${str}${str}`;
+  return `${str}${str}`;
 }
 function doubleNumber(num: number): number {
-return num \* 2;
+  return num \* 2;
 }
 function doubleBooleanArray(arr: boolean[]): boolean[] {
-return arr.concat(arr);
+  return arr.concat(arr);
 }
 
 // 이 세 함수를 함수 오버로딩을 사용해서 하나의 double 이라는 함수로 합쳐보자.
@@ -148,13 +148,13 @@ function double(str: string): string;
 function double(num: number): number;
 function double(arr: boolean[]): boolean[];
 function double(arg: string | number | boolean[]) {
-if (typeof arg === 'string') {
-return `${arg}${arg}`;
-} else if (typeof arg === 'number') {
-return arg \* 2;
-} else if (Array.isArray(arg)) {
-return arg.concat(arg);
-}
+  if (typeof arg === 'string') {
+    return `${arg}${arg}`;
+  } else if (typeof arg === 'number') {
+    return arg \* 2;
+  } else if (Array.isArray(arg)) {
+    return arg.concat(arg);
+  }
 }
 
 const n = double(2); // number
@@ -163,7 +163,7 @@ const s = double('hi'); // string
 
 <br>
 
-## 89 Optional Chaining
+## 89. Optional Chaining
 
 외부에서 받아온 객체에 어떤 프로퍼티가 있는지 없는지 확실하지 않을 때에는 옵셔널 체이닝을 사용하면 된다.
 
@@ -187,7 +187,7 @@ const title2 = userData?.job?.title; // optional chaining 을 사용하면 이�
 
 <br>
 
-## 90 Nullish Coalescing Operator
+## 90. Nullish Coalescing Operator
 
 ?? 라는 연산자를 통해 앞의 피연산자가 null 혹은 undefined인지 확인하며, 그 쓰임은 ||와 같다.
 
