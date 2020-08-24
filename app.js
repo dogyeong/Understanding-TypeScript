@@ -1,56 +1,41 @@
 "use strict";
-/* 94
-제네릭은 어떤 함수, 클래스, 자료구조 등에서 사용할 타입을 사용할 때(선언할 때?) 결정하는 기법이다.
-타입을 선언할 때 뒤에 <사용할 타입>을 명시하면 된다.
+/*
+## 104. Decorators
+
+`@`이라는 character로 사용하는 문법을 Decorator(데코레이터)라고 합니다.
+
+데코레이터는 함수 라고 할 수 있습니다. 데코레이터는 말 그대로 코드 조각을 장식해주는 역할을 하며 타입스크립트에서는 그 기능을 함수로 구현할 수 있습니다.
+
+Decorator는 클래스 선언, 메서드, 접근 제어자, 속성 또는 매개 변수에 첨부 할 수 있는 특별한 종류의 선언입니다.
+
+데코레이터는 @expression 형식을 사용하는데, expression은 데코레이팅 된 선언에 대한 정보와 함께 존재하며 이는 런타임에 호출됩니다.
 */
-// 배열을 선언할 때 스트링 배열인 것을 선언하는 제네릭 문법
-const names = ['Max', 'John']; // Array<string> 은 string[] 와 같은 말이다.
-// number 타입을 resolve하는 promise를 선언하는 제네릭 문법
-const promise = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        resolve(123);
-    }, 2000);
-});
-// 제네릭을 이용한 사용할 때 한가지 타입을 정할 수 있는 스택 자료구조
-class Stack {
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+/*
+## 105. A First Class Decorator
+
+클래스 선언에 사용되는 클래스 데코레이터는 기존의 클래스 정의를 확장하는 용도로 사용할 수 있습니다.
+
+클래스 데코레이터 함수의 인자로는 클래스(생성자 함수)가 전달됩니다.
+
+클래스 데코레이터 함수에서는 새로운 클래스(생성자 함수)만을 반환할 수 있고, 함수 외의 값들은 무시됩니다.
+*/
+function Logger(constructor) {
+    console.log('logging...');
+    console.log(constructor);
+}
+let Person = class Person {
     constructor() {
-        this.stack = [];
+        this.name = 'Max';
+        console.log('creating person...');
     }
-    push(item) {
-        this.stack.push(item);
-    }
-    pop() {
-        return this.stack.pop();
-    }
-}
-/* 95
-제네릭 함수
-*/
-// 만약 두 객체를 받아서 합친 객체를 반환하는 함수를 정의한 경우,
-// 아래와 같이 타입을 object로 정의하면 리턴 타입도 object 타입이 되고,
-// 반환한 객체가 어떤 프로퍼티를 가지는지 타입스크립트는 알 수 없게 된다.
-function merge(obj1, obj2) {
-    return Object.assign(obj1, obj2);
-}
-const merged = merge({ name: 'Max' }, { age: 30 });
-// merged.age // 에러
-// 제네릭을 이용하면 리턴타입이 T & U 가 되고,
-// 함수를 사용할 때마다 그때그때 동적으로 리턴 객체의 정보가 바뀐다
-function mergeWithGeneric(obj1, obj2) {
-    return Object.assign(obj1, obj2);
-}
-const merged2 = mergeWithGeneric({ name: 'Max' }, { age: 30 });
-merged2.age; // 30
-/* 96
-타입 제한
-*/
-// 위에서 만든 함수의 경우, 두 번째 인자로 숫자를 넣어도 에러가 발생하지 않는다.
-// 제네릭은 타입을 유연하게 만들지만, 이렇게 원하지 않는 타입이 들어갈 수도 있는 부작용이 생길 수 있다.
-// 이럴 때 타입을 제한할 수 있는 방법이 있다.
-// 제네릭 타입을 적을 때 extends로 특정 타입을 상속하게 하면 된다.
-function mergeWithConstraints(obj1, obj2) {
-    return Object.assign(obj1, obj2);
-}
-mergeWithGeneric({ name: 'Max' }, 30); // 에러아님
-// mergeWithConstraints({ name: 'Max' }, 30) // 에러
-mergeWithConstraints({ name: 'Max' }, { age: 30 }); // 객체만 받을 수 있게 되었다
+};
+Person = __decorate([
+    Logger
+], Person);
+const max = new Person();
