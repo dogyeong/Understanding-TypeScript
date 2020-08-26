@@ -23,7 +23,7 @@ Decorator는 클래스 선언, 메서드, 접근 제어자, 속성 또는 매개
 클래스 데코레이터 함수에서는 새로운 클래스(생성자 함수)만을 반환할 수 있고, 함수 외의 값들은 무시됩니다.
 */
 
-```typescript
+/*
 function Logger(constructor: Function) {
   console.log('logging...');
   console.log(constructor);
@@ -50,13 +50,16 @@ class Person {
 }
 creating person...
 */
-```/*
+
+/*
 106. Working with Decorator Factories
 
 데코레이터 함수를 리턴하는 함수를 데코레이터 팩토리라고 한다.
 
 팩토리를 사용하면 원하는 파라미터를 전달해서 내부 함수에서 다양하게 활용할 수 있도록 커스터마이징 할 수 있다.
-*/ ```typescript
+*/
+
+/*
 // 위의 데코레이터에 파라미터를 전달하는 팩토리함수
 function LoggerFactory(logString: string) {
   return function (constructor: Function) {
@@ -81,14 +84,17 @@ app.js:68 class Animal {
     }
 }
 */
-```/* 
+
+/* 
 ## 107. Building More Useful Decorators
 
 템플릿을 DOM에 추가하는 데코레이터
 
 이런 데코레이터를 다른 개발자들이 가져다 사용할 수 있다.
 
-*/ ```typescript
+*/
+
+/*
 function WithTemplate(template: string, hookId: string) {
   return function (constructor: any) {
     const hookEl = document.getElementById(hookId);
@@ -103,7 +109,9 @@ function WithTemplate(template: string, hookId: string) {
 class Car {
   constructor() {}
 }
-```/*
+*/
+
+/*
 ## 108. Adding Multiple Decorators
 
 데코레이터를 여러개 연속으로 붙일 수 있다.
@@ -114,7 +122,9 @@ class Car {
 
 만약 데코레이터 팩토리를 사용한다면, 팩토리 자체는 위에서 밑으로 호출된다.
 
-*/ ```typescript
+*/
+
+/*
 function factory1() {
   console.log('factory 1');
   return (construnctor: any) => console.log('decorator 1');
@@ -136,7 +146,7 @@ class Test {
 // factory 2
 // decorator 2
 // decorator 1
-```;
+*/
 
 /*
 ## 109. Diving into Property Decorators
@@ -148,6 +158,7 @@ class Test {
 
 */
 
+/*
 function Log(target: any, name: string) {
   console.log(target, name);
 }
@@ -161,16 +172,89 @@ class Product {
     this.title = t;
     this._price = p;
   }
+}
 
+// Product의 prototype과 "title"이 출력된다
+*/
+
+/*
+## 110. Accessor & Parameter Decorators
+
+Accessor Decorator(접근자 데코레이터)는 getter, setter 에 적용되는 데코레이터다. 
+
+데코레이터 함수에서는 메서드 데코레이터와 동일한 인자를 받는다.
+
+1. static 메서드라면 클래스의 생성자 함수, 인스턴스의 메서드라면 클래스의 prototype 객체
+2. 프로퍼티 이름
+3. Property Descriptor
+
+접근자 데코레이터도 메서드 데코레이터처럼 인자로 넘어온 Property Descriptor를 변경하거나, 새로운 Property Descriptor를 반환해서 원래 접근자의 기능을 확장할 수 있다.
+
+함수의 파라미터에 사용되는 파라미터 데코레이터는 세 개의 인자를 받고, 반환값은 무시된다. 세 개의 인자는 다음과 같다.
+
+1. static 메서드의 파라미터 데코레이터라면 클래스의 생성자 함수, 인스턴스의 메서드라면 prototype 객체
+2. 파라미터 데코레이터가 적용된 메서드의 이름
+3. 메서드 파라미터 목록에서의 index
+
+
+*/
+
+/*
+function Log(target: any, name: string, descriptor: PropertyDescriptor) {
+  console.log(target);
+  console.log(name);
+  console.log(descriptor);
+}
+
+function Log2(target: any, name: string, position: number) {
+  console.log(target);
+  console.log(name);
+  console.log(position);
+}
+
+class Product {
+  public title: string;
+  private _price: number;
+
+  constructor(t: string, p: number) {
+    this.title = t;
+    this._price = p;
+  }
+
+  // Accessor Decorator
+  @Log
   set price(val: number) {
     if (val > 0) {
       this._price = val;
     }
   }
 
-  getPriceWithTax(tax: number) {
+  // Parameter Decorator
+  getPriceWithTax(@Log2 tax: number) {
     return this._price * (1 + tax);
   }
 }
-
-// Product의 prototype과 "title"이 출력된다
+// 실행결과
+// {
+//   constructor: class Product
+//   getPriceWithTax: ƒ getPriceWithTax(tax)
+//   set price: ƒ price(val)
+//   __proto__: Object
+// }
+// price
+// {
+//   configurable: true
+//   enumerable: false
+//   get: undefined
+//   set: ƒ price(val)
+//   __proto__: Object
+// }
+// {
+//   constructor: class Product
+//   getPriceWithTax: ƒ getPriceWithTax(tax)
+//   set price: ƒ price(val)
+//   __proto__: Object
+// }
+// getPriceWithTax
+// 0
+*/
