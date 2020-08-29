@@ -364,3 +364,74 @@ class Printer {
 const p = new Printer();
 document.addEventListener('click', p.showMessage);
 ```
+
+<br>
+
+## 115, 116, 117. Validation with Decorators
+
+입력값을 검증하는 데코레이터를 만들어보자
+
+```typescript
+interface ValidatorConfig {
+  [property: string]: {
+    [validatableProp: string]: string[]; // ['required', 'positive']
+  };
+}
+
+const registeredValidators: ValidatorConfig = {};
+
+function Required(target: any, propName: string) {
+  registeredValidators[target.constructor.name] = {
+    ...registeredValidators[target.constructor.name],
+    [propName]: ['required'],
+  };
+}
+
+function PositiveNumber(target: any, propName: string) {
+  registeredValidators[target.constructor.name] = {
+    ...registeredValidators[target.constructor.name],
+    [propName]: ['positive'],
+  };
+}
+
+function validate(obj: any) {
+  const objValidatorConfig = registeredValidators[obj.constructor.name];
+  if (!objValidatorConfig) {
+    return true;
+  }
+  let isValid = true;
+  for (const prop in objValidatorConfig) {
+    for (const validator of objValidatorConfig[prop]) {
+      switch (validator) {
+        case 'required':
+          isValid = isValid && !!obj[prop];
+          break;
+        case 'positive':
+          isValid = isValid && obj[prop] > 0;
+          break;
+      }
+    }
+  }
+  return isValid;
+}
+
+class Course {
+  @Required
+  title: string;
+  @PositiveNumber
+  price: number;
+
+  constructor(title: string, price: number) {
+    this.title = title;
+    this.price = price;
+  }
+}
+
+const c1 = new Course('js', 1200);
+const c2 = new Course('', 100);
+const c3 = new Course('ts', 0);
+
+console.log(validate(c1)); // true
+console.log(validate(c2)); // false
+console.log(validate(c3)); // false
+```
