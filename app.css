@@ -85,13 +85,13 @@ button:active {
   list-style: none;
   margin: 0;
   padding: 1rem;
-  background-color: white;
 }
 
 .projects li {
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.26);
   padding: 1rem;
   margin: 1rem;
+  background: white;
 }
 
 .projects li h2 {
