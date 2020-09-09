@@ -113,7 +113,10 @@ class ProjectItem extends Component {
             return `${this.project.people} persons`;
         }
     }
-    dragStartHandler(event) { }
+    dragStartHandler(event) {
+        event.dataTransfer.setData('text/plain', this.project.id);
+        event.dataTransfer.effectAllowed = 'move';
+    }
     dragEndHandler(event) { }
     configure() {
         this.element.addEventListener('dragstart', this.dragStartHandler.bind(this));
@@ -135,14 +138,19 @@ class ProjectList extends Component {
         this.renderContent();
     }
     dragOverHandler(event) {
-        const listEl = this.element.querySelector('ul');
-        listEl.classList.add('droppable');
+        if (event.dataTransfer && event.dataTransfer.types[0] === 'text/plain') {
+            event.preventDefault();
+            const listEl = this.element.querySelector('ul');
+            listEl.classList.add('droppable');
+        }
     }
     dragLeaveHandler(event) {
         const listEl = this.element.querySelector('ul');
         listEl.classList.remove('droppable');
     }
-    dropHandler(event) { }
+    dropHandler(event) {
+        console.log(event.dataTransfer.getData('text/plain'));
+    }
     renderProjects() {
         const listEl = document.getElementById(`${this.type}-projects-list`);
         listEl.innerHTML = '';
