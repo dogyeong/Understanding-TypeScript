@@ -64,5 +64,15 @@
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
   "exclude": ["ts", "node_modules"],
-  "include": ["./*.ts", "ts/configuration.ts", "ts/classes.ts", "ts/advanced-types.ts"]
+  "include": [
+    "./*.ts",
+    "ts/configuration.ts",
+    "ts/classes.ts",
+    "ts/advanced-types.ts",
+    "util/validation.ts",
+    "util/project-state.ts",
+    "models/project-model.ts",
+    "models/drag-drop-interfaces.ts",
+    "decorators/autobind-decorator.ts"
+  ]
 }
