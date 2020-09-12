@@ -18,3 +18,23 @@
 모던한 ES Module 방식을 사용할 수도 있다. 이 방식이 더 좋은 것으로 보인다.
 ES Module방식을 사용하면, 여러 파일을 작성하고 브라우저에는 하나의 스크립트 파일만 import 하면 된다.
 그러면 브라우저가 알아서 의존성이 있는 파일들을 다운로드한다.
+
+<br>
+
+## 144. A Problem with Namespace Imports
+
+네임스페이스를 이용한 방식의 문제점은 파일을 import하는 점이다.
+
+파일 내의 원하는 부분만 import, export할 수 없다.
+
+그래서 필요한 부분이 있는 모든 파일들을 import해야만 한다.
+
+<br>
+
+## 146. Using ES Modules
+
+import, export 문을 사용하면 ES Module 기능을 사용할 수 있다.
+
+- ES Module은 자바스크립트의 기능이므로 `.js` 파일을 import 해야한다.
+- tsconig 파일에서 es2015 이상으로 설정한다.
+- 번들링 기능을 사용할 수 없고, 모든 모듈 파일들이 컴파일되므로 tsconfig에서 outDir속성을 이용하는게 좋다.
