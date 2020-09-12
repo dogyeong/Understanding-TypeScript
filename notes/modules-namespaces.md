@@ -80,3 +80,11 @@ import something from 'module.js';
 // 다른 이름을 사용해도 된다
 import sth from 'module.js';
 ```
+
+<br>
+
+## 148. How Does Code In Modules Execute?
+
+하나의 모듈이 여러 파일에서 import 되면, 앱이 실행되면 그 모듈은 여러번 실행될까?
+
+여러번 import 되더라도 모듈의 코드는 처음 import된 부분에서 한번만 실행된다.
