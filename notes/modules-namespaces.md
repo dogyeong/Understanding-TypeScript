@@ -38,3 +38,45 @@ import, export 문을 사용하면 ES Module 기능을 사용할 수 있다.
 - ES Module은 자바스크립트의 기능이므로 `.js` 파일을 import 해야한다.
 - tsconig 파일에서 es2015 이상으로 설정한다.
 - 번들링 기능을 사용할 수 없고, 모든 모듈 파일들이 컴파일되므로 tsconfig에서 outDir속성을 이용하는게 좋다.
+
+<br>
+
+## 147. Understanding various Import & Export Syntaxes
+
+하나의 파일에서 여러가지를 import하는 경우 다음과 같이 이름을 지을 수 있다.
+
+```javascript
+// 기본적인 import 구문
+import { a, b } from 'module.js';
+
+// 여러개를 하나의 모듈 이름으로 묶을 때
+import * as ModuleA from 'module.js';
+
+// 묶어서 import한 것들을 사용할 경우
+ModuleA.a;
+ModuleA.b;
+```
+
+`as`를 이용해서 다른 이름으로 import 할 수 있다.
+
+```javascript
+// module.js 의 a를 b라는 이름으로 import
+import { a as b } from 'module.js';
+```
+
+하나만 export하는 경우, default를 붙일 수 있다.
+
+```javascript
+// module.js
+
+// default를 export뒤에 붙여서 export한다
+export default something = '...';
+
+// app.js
+
+// default로 하나만 export된 것을 import할 때는, 괄호를 안써도 된다
+import something from 'module.js';
+
+// 다른 이름을 사용해도 된다
+import sth from 'module.js';
+```
