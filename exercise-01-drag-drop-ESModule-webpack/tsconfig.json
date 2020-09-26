@@ -10,7 +10,7 @@
     // "jsx": "preserve",                     /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
     // "declaration": true,                   /* Generates corresponding '.d.ts' file. */
     // "declarationMap": true,                /* Generates a sourcemap for each corresponding '.d.ts' file. */
-    // "sourceMap": true /* Generates corresponding '.map' file. */,
+    "sourceMap": true /* Generates corresponding '.map' file. */,
     // "outFile": "./bundle.js" /* Concatenate and emit output to single file. */,
     "outDir": "./dist" /* Redirect output structure to the directory. */,
     // "rootDir": "./",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
@@ -69,10 +69,10 @@
     "ts/configuration.ts",
     "ts/classes.ts",
     "ts/advanced-types.ts",
-    "util/validation.ts",
-    "util/project-state.ts",
-    "models/project-model.ts",
-    "models/drag-drop-interfaces.ts",
-    "decorators/autobind-decorator.ts"
+    "src/util/validation.ts",
+    "src/util/project-state.ts",
+    "src/models/project-model.ts",
+    "src/models/drag-drop-interfaces.ts",
+    "src/decorators/autobind-decorator.ts"
   ]
 }
