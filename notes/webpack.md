@@ -72,3 +72,60 @@ tsconfig.json에서 sourceMap 설정을 한다
 ```javascript
 "sourceMap": true
 ```
+
+<br>
+
+## 156. Finishing the Setup & Adding webpack-dev-server
+
+webpcak-dev-server를 적용하기 위해서 webpack.config.js에 publicPath를 지정한다
+
+- path : 어디에 결과가 저장되는지 에 관한 것
+- publicPath : 배포 빌드 할 때 Webpack plugins(ulr-loader,file-loader 같은..), CSS나 HTML파일 안에 URL들을 업데이트 해주기 위한 것(prefix개념)
+
+```javascript
+output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: 'dist',
+  },
+```
+
+<br>
+
+## 157. Adding a Production Workflow
+
+실제 배포할 떄는 Production 모드를 사용해서 코드를 최적화할 수 있다.
+
+1. production용 설정파일을 하나 만든다. `webpack.config.production.js`과 같은 이름
+2. mode는 production으로 설정, sourceMap 설정을 비활성화하고, 약간의 플러그인을 더 추가
+3. 번들링하는 스크립트를 다음과 같이 설정 `webpack --config webpack.config.production.js`
+
+```javascript
+// webpack.config.production.js
+
+const path = require('path');
+const CleanPlugin = require('clean-webpack-plugin'); // 번들링할때 기존 파일들 삭제해주는 플러그인
+
+module.exports = {
+  mode: 'production',
+  entry: './app.ts',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['.ts', '.js'],
+  },
+  devtool: 'none',
+  plugins: [new CleanPlugin.CleanWebpackPlugin()],
+};
+```
