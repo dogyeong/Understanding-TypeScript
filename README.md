@@ -1,5 +1,9 @@
 ## Understanding TypeScript
 
+Udemy의 [Understanding TypeScript 2020 Edition](https://www.udemy.com/course/understanding-typescript/)을 수강하고 내용을 정리한 저장소입니다.
+
+### Index
+
 1. **Getting Started**
 2. **TypeScript Basics & Basic Types**
 3. **The TypeScript Compiler (and its Configuration)**
