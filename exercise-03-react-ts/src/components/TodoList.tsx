@@ -1,5 +1,6 @@
 import React from 'react';
 import { Todo } from '../todo.model';
+import './TodoList.css';
 
 type TodoListProps = {
   todos: Todo[];
