@@ -1,15 +1,11 @@
 import React from 'react';
+import { Todo } from '../todo.model';
 
-type Todo = {
-  id: string;
-  text: string;
-};
-
-type TodoListType = {
+type TodoListProps = {
   todos: Todo[];
 };
 
-function TodoList({ todos }: TodoListType) {
+function TodoList({ todos }: TodoListProps) {
   return (
     <ul>
       {todos.map((todo) => (
